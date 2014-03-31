@@ -6,21 +6,20 @@ class Server < Sinatra::Base
     @brain = Brain.new
   end
 
-  get "/move" do
-    @brain.move
+  after do
     @brain.die
     200
+  end
+
+  get "/move" do
+    @brain.move(params[:command]) if params[:command]
+  end
+
+  get "/forward" do
+    @brain.forward
   end
 
   get "/stop" do
     @brain.stop
-    @brain.die
-    200
-  end
-
-  get "/blink" do
-    @brain.blink
-    @brain.die
-    200
   end
 end
