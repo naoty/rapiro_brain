@@ -1,18 +1,26 @@
 require "sinatra/base"
+require "./brain"
 
 class Server < Sinatra::Base
+  before do
+    @brain = Brain.new
+  end
+
   get "/move" do
-    Brain.new.move
+    @brain.move
+    @brain.die
     200
   end
 
   get "/stop" do
-    Brain.new.stop
+    @brain.stop
+    @brain.die
     200
   end
 
   get "/blink" do
-    Brain.new.blink
+    @brain.blink
+    @brain.die
     200
   end
 end

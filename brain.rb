@@ -6,18 +6,22 @@ class Brain
   end
 
   def move
-    @serial_port.puts("#M1")
+    @serial_port.serialPuts("#M1")
   end
 
   def stop
-    @serial_port.puts("#M0")
+    @serial_port.serialPuts("#M0")
   end
 
-  def blink
-    @serial_port.puts("#M6")
+  def wriggle
+    @serial_port.serialPuts("#M6")
     sleep 1
-    @serial_port.puts("#M7")
+    @serial_port.serialPuts("#M7")
     sleep 1
-    @serial_port.puts("#M8")
+    @serial_port.serialPuts("#M8")
+  end
+
+  def die
+    @serial_port.serialClose
   end
 end
