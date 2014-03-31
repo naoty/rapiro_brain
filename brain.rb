@@ -6,7 +6,7 @@ class Brain
   end
 
   def move(command)
-    @serial_port.serialPuts(command)
+    @serial_port.serialPuts("##{command}")
   end
 
   def forward
